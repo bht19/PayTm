@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 mongoose.connect = ("mongodb+srv://Bharatserver:Bharat7885@bharatserver.jow40zq.mongodb.net/100xpaytm/paytm");
 
@@ -43,18 +43,17 @@ const accountSchema = new mongoose.Schema({
     }
 });
 
-const Account = require('./account.js');
 
-const transferFunds = async (fromAccountId, toAccountId, amount) => {
-    // Decrement the balance of the fromAccount
-	  await Account.findByIdAndUpdate(fromAccountId, { $inc: { balance: -amount } });
+// const transferFunds = async (fromAccountId, toAccountId, amount) => {
+//     // Decrement the balance of the fromAccount
+// 	  await Account.findByIdAndUpdate(fromAccountId, { $inc: { balance: -amount } });
 
-    // Increment the balance of the toAccount
-    await Account.findByIdAndUpdate(toAccountId, { $inc: { balance: amount } });
-}
+//     // Increment the balance of the toAccount
+//     await Account.findByIdAndUpdate(toAccountId, { $inc: { balance: amount } });
+// }
 
-// Example usage
-transferFunds('fromAccountID', 'toAccountID', 100);
+// // Example usage
+// transferFunds('fromAccountID', 'toAccountID', 100);
 
 
 

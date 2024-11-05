@@ -5,6 +5,7 @@ const router = express.Router();
 const { User, Account } = require("../db");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
+const  { authMiddleware } = require("../middleware");
 
 //  signup routes
 
@@ -57,9 +58,9 @@ router.post("/signup", async (req,res) => {
     })
 })
 
-const signinBody = zod.object({
-    username: zod.string().email(),
-	password: zod.string()
+const signinBody = Zod.object({
+    username: Zod.string().email(),
+	password: Zod.string()
 })
 
 // signin routes
@@ -96,12 +97,11 @@ router.post("/signin", async (req, res) => {
 
 // Update username and password
 
-const  { authMiddleware } = require("../middleware");
 
-const updateBody = zod.object({
-	password: zod.string().optional(),
-    firstName: zod.string().optional(),
-    lastName: zod.string().optional(),
+const updateBody = Zod.object({
+	password: Zod.string().optional(),
+    firstName: Zod.string().optional(),
+    lastName: Zod.string().optional(),
 })
 
 router.put("/", authMiddleware, async (req, res) => {
